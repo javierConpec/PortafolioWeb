@@ -1,10 +1,9 @@
-import me from "../assets/me.jpg?url";
 import CV from "../assets/CV.docx?url";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin, FaTiktok } from "react-icons/fa";
-import TextType from "../styles/animated/textType";
-import Button from "./buttonDownloadComponent";
+import { FaGithub, FaLinkedin, FaTiktok,FaFacebook,FaInstagram } from "react-icons/fa";
+import photome from "../assets/photome.png?url";
+import Button from "../components/buttonDownloadComponent"
 
 export const AboutMe = () => {
   const [showTitle, setShowTitle] = useState(true);
@@ -30,7 +29,7 @@ export const AboutMe = () => {
             key="title"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, x: 0 }} // sale hacia la izquierda
+            exit={{ opacity: 0, x: 0 }}
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-white font-extrabold text-3xl md:text-[100px] text-left md:leading-[0.8]">
@@ -87,45 +86,110 @@ export const AboutMe = () => {
           </motion.div>
         ) : (
           // About Me
-          <div>
-            <motion.div
-              key="about"
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 50 }}
-              transition={{ duration: 1 }}
-              className="flex flex-col items-center justify-center p-8 md:p-10 w-full text-center"
-            >
+          <div className="flex flex-row items-center justify-center w-full h-full px-4 gap-12">
+            {/* Texto */}
+            <div className="flex flex-col justify-center w-1/2">
               <motion.div
-                initial={{ opacity: 0, x: 0 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
+                key="about"
+                initial={{ opacity: 0, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 50 }}
+                transition={{ duration: 1 }}
+                className="flex flex-col justify-center p-8 md:p-10 w-full"
               >
-                <h2 className="font-rammetto text-white text-[50px] md:text-[100px] font-extrabold ">
-                  Javier Contreras
-                </h2>
-                <h3 className="text-white text-2xl mb-2 font-bold ">
-                  - Desarrollador Web -
-                </h3>
-
-                <div className="flex flex-col items-center justify-center text-center p-6 relative z-10">
-                  <TextType
-                    className="text-white text-sm md:text-xl max-w-3xl mx-auto leading-relaxed"
-                    text={[
-                      `Hola, soy Javier, un desarrollador junior apasionado por el desarrollo frontend. 
-Estudié Computación e Informática y, a lo largo de mi formación, descubrí mi pasión 
-por crear interfaces web atractivas y funcionales. Trabajo con tecnologías modernas y 
-siempre busco mejorar mis habilidades para construir experiencias digitales limpias, 
-rápidas y fáciles de usar.`,
-                    ]}
-                    typingSpeed={15}
-                    pauseDuration={1500}
-                    showCursor={true}
-                    cursorCharacter="|"
-                  />
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, x: 0 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                >
+                  <div className="leading-[0.8] mb-5">
+                    <h3 className="text-white text-2xl md:text-[35px]  font-semibold ">
+                    
+                    Hello, my name is
+                  </h3>
+                  <h2 className="font-rammetto text-white text-[50px] md:text-[100px] font-extrabold">
+                    Javier<strong className="text-[#a3cfc6ff]"> Contreras</strong>
+                  </h2>
+                  <h3 className="text-white text-2xl md:text-[35px] mt-5 font-semibold">
+                    I'm a <strong className="text-[#a3cfc6ff]">Web Developer</strong>
+                  </h3>
+                  </div>
+                  <div className="flex flex-col md:flex-row mt-10 text-[#a3cfc6ff] gap-5">
+                    <FaGithub
+                      className=" text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://github.com/javierConpec",
+                          "_blank"
+                        )
+                      }
+                    />
+                    <FaLinkedin
+                      className=" text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.linkedin.com/in/javiercontrerasp/",
+                          "_blank"
+                        )
+                      }
+                    />
+                    <FaFacebook
+                      className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.facebook.com/jxviiiiiiZzzz",
+                          "_blank"
+                        )
+                      }
+                    />
+                    <FaInstagram
+                      className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.instagram.com/javierconp/",
+                          "_blank"
+                        )
+                      }
+                    />
+                    <FaTiktok
+                      className=" text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                      onClick={() =>
+                        window.open(
+                          "https://www.tiktok.com/@javi19cp",
+                          "_blank"
+                        )
+                      }
+                    />
+                  </div>
+                  <Button text="Descargar CV" onClick={handleDownload} />
+                  
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
+
+            {/* Imagen con blob */}
+            <div className="relative w-80 h-80 md:w-[600px] md:h-[600px] rounded-full overflow-hidden">
+              {/* Blob de fondo */}
+              <svg
+                viewBox="20 30 180 110"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute inset-0 w-full h-full opacity-90"
+              >
+                <path
+                  fill="#a3cfc6ff"
+                  d="M39.1,-67C49.1,-62,54.4,-48.2,62.9,-35.6C71.4,-23,83,-11.5,85.3,1.3C87.6,14.2,80.6,28.3,69,35.6C57.4,42.8,41.3,43.2,29,51.5C16.8,59.8,8.4,76,-4,83C-16.5,90,-32.9,87.8,-40.5,76.8C-48,65.8,-46.6,45.9,-53.3,31.7C-60,17.4,-74.8,8.7,-75.4,-0.4C-76.1,-9.4,-62.6,-18.9,-53.6,-29.2C-44.6,-39.5,-40.2,-50.7,-32,-56.8C-23.8,-62.9,-11.9,-64,1.3,-66.3C14.6,-68.6,29.1,-72.1,39.1,-67Z"
+                  transform="translate(100 100)"
+                />
+              </svg>
+              
+
+              {/* Imagen encima */}
+              <img
+                src={photome}
+                alt="Javier"
+                className="absolute inset-0 w-full h-full object-cover "
+              />
+            </div>
           </div>
         )}
       </AnimatePresence>
