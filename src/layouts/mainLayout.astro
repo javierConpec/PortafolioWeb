@@ -1,6 +1,7 @@
 ---
-import '../styles/global.css' 
-import Header from '../components/headerComponent.astro';
+import "../styles/global.css";
+import Header from "../components/headerComponent.astro";
+import Galaxy from "../styles/animated/Galaxy.tsx";
 ---
 
 <html lang="es">
@@ -8,11 +9,21 @@ import Header from '../components/headerComponent.astro';
     <meta charset="UTF-8" />
     <title>Mi Portafolio</title>
   </head>
-  <body class="bg-gray-100 text-gray-900 min-h-screen">
-    <!-- Header fijo en todas las páginas -->
+  <body class="bg-black text-gray-900 min-h-screen relative overflow-hidden">
     <Header />
 
-    <main class="p-6">
+    <!-- Fondo Galaxy -->
+    <div class="absolute inset-0 -z-10 w-full h-full">
+      <Galaxy client:load 
+    density={1}
+    glowIntensity={0.2}
+    saturation={0.2}
+    hueShift={500}
+      />
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="relative z-10 p-6 flex items-center justify-center min-h-screen">
       <slot />
     </main>
   </body>
