@@ -1,9 +1,9 @@
 import CV from "../assets/CV.docx?url";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin, FaTiktok,FaFacebook,FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTiktok, FaFacebook, FaInstagram } from "react-icons/fa";
 import photome from "../assets/photome.png?url";
-import Button from "../components/buttonDownloadComponent"
+import Button from "../components/buttonDownloadComponent";
 
 export const AboutMe = () => {
   const [showTitle, setShowTitle] = useState(true);
@@ -16,7 +16,7 @@ export const AboutMe = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowTitle(false), 4000);
+    const timer = setTimeout(() => setShowTitle(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -65,10 +65,7 @@ export const AboutMe = () => {
                     <FaTiktok
                       className="text-pink-500 text-[20px] md:text-[50px] mx-2 cursor-pointer"
                       onClick={() =>
-                        window.open(
-                          "https://www.tiktok.com/@javi19cp",
-                          "_blank"
-                        )
+                        window.open("https://www.tiktok.com/@javi19cp", "_blank")
                       }
                     />
                   </motion.div>
@@ -85,26 +82,20 @@ export const AboutMe = () => {
             </h1>
           </motion.div>
         ) : (
-          // About Me
-          <div className="flex flex-row items-center justify-center w-full h-full px-4 gap-12">
+          // Bloque About Me completo con animación general
+          <motion.div
+            key="about"
+            initial={{ opacity: 0, y: 0, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 0, scale: 0.95 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="flex flex-row items-center justify-center w-full h-full px-4 gap-12"
+          >
             {/* Texto */}
             <div className="flex flex-col justify-center w-1/2">
-              <motion.div
-                key="about"
-                initial={{ opacity: 0, y: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 50 }}
-                transition={{ duration: 1 }}
-                className="flex flex-col justify-center p-8 md:p-10 w-full"
-              >
-                <motion.div
-                  initial={{ opacity: 0, x: 0 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                >
-                  <div className="leading-[0.8] mb-5">
-                    <h3 className="text-white text-2xl md:text-[35px]  font-semibold ">
-                    
+              <div className="flex flex-col justify-center p-8 md:p-10 w-full">
+                <div className="leading-[0.8] mb-5">
+                  <h3 className="text-white text-2xl md:text-[35px] font-semibold">
                     Hello, my name is
                   </h3>
                   <h2 className="font-rammetto text-white text-[50px] md:text-[100px] font-extrabold">
@@ -113,58 +104,47 @@ export const AboutMe = () => {
                   <h3 className="text-white text-2xl md:text-[35px] mt-5 font-semibold">
                     I'm a <strong className="text-[#a3cfc6ff]">Web Developer</strong>
                   </h3>
-                  </div>
-                  <div className="flex flex-col md:flex-row mt-10 text-[#a3cfc6ff] gap-5">
-                    <FaGithub
-                      className=" text-[20px] md:text-[50px] mx-2 cursor-pointer"
-                      onClick={() =>
-                        window.open(
-                          "https://github.com/javierConpec",
-                          "_blank"
-                        )
-                      }
-                    />
-                    <FaLinkedin
-                      className=" text-[20px] md:text-[50px] mx-2 cursor-pointer"
-                      onClick={() =>
-                        window.open(
-                          "https://www.linkedin.com/in/javiercontrerasp/",
-                          "_blank"
-                        )
-                      }
-                    />
-                    <FaFacebook
-                      className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
-                      onClick={() =>
-                        window.open(
-                          "https://www.facebook.com/jxviiiiiiZzzz",
-                          "_blank"
-                        )
-                      }
-                    />
-                    <FaInstagram
-                      className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
-                      onClick={() =>
-                        window.open(
-                          "https://www.instagram.com/javierconp/",
-                          "_blank"
-                        )
-                      }
-                    />
-                    <FaTiktok
-                      className=" text-[20px] md:text-[50px] mx-2 cursor-pointer"
-                      onClick={() =>
-                        window.open(
-                          "https://www.tiktok.com/@javi19cp",
-                          "_blank"
-                        )
-                      }
-                    />
-                  </div>
-                  <Button text="Descargar CV" onClick={handleDownload} />
-                  
-                </motion.div>
-              </motion.div>
+                </div>
+
+                {/* Redes sociales */}
+                <div className="flex flex-col md:flex-row mt-10 text-[#a3cfc6ff] gap-5">
+                  <FaGithub
+                    className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                    onClick={() =>
+                      window.open("https://github.com/javierConpec", "_blank")
+                    }
+                  />
+                  <FaLinkedin
+                    className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                    onClick={() =>
+                      window.open(
+                        "https://www.linkedin.com/in/javiercontrerasp/",
+                        "_blank"
+                      )
+                    }
+                  />
+                  <FaFacebook
+                    className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                    onClick={() =>
+                      window.open("https://www.facebook.com/jxviiiiiiZzzz", "_blank")
+                    }
+                  />
+                  <FaInstagram
+                    className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                    onClick={() =>
+                      window.open("https://www.instagram.com/javierconp/", "_blank")
+                    }
+                  />
+                  <FaTiktok
+                    className="text-[20px] md:text-[50px] mx-2 cursor-pointer"
+                    onClick={() =>
+                      window.open("https://www.tiktok.com/@javi19cp", "_blank")
+                    }
+                  />
+                </div>
+
+                <Button text="Descargar CV" onClick={handleDownload} />
+              </div>
             </div>
 
             {/* Imagen con blob */}
@@ -181,16 +161,16 @@ export const AboutMe = () => {
                   transform="translate(100 100)"
                 />
               </svg>
-              
 
               {/* Imagen encima */}
               <img
-                src={photome}
-                alt="Javier"
-                className="absolute inset-0 w-full h-full object-cover "
-              />
+  src={photome}
+  alt="Javier"
+  loading="lazy"
+  className="absolute inset-0 w-full h-full object-cover"
+/>
             </div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
